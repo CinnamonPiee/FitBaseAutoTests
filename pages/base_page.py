@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from selenium.common.exceptions import (
     NoSuchElementException, 
     TimeoutException, 
@@ -10,6 +11,9 @@ from .locators import BasePageLocators
 
 from typing import Any
 import os
+
+
+load_dotenv()
 
 
 class BasePage:
