@@ -2,11 +2,10 @@ from pages.auth_page import AuthPage
 
 
 class TestBasePageFromMainPage():
-    def test_quest_can_auth(self, browser) -> None:
+    def test_check_visible_on_page(self, browser) -> None:
         link = "https://dude-yoga.fitbase.io/"
         page = AuthPage(browser, link)
         page.open()
-
         # Проверка отображения элементов на странице
         page.should_be_login_form()
         page.should_be_password_form()
@@ -26,5 +25,9 @@ class TestBasePageFromMainPage():
         # Переход обратно
         # page.go_to_toggle_on_reset_password_comeback()
 
+    def test_quest_can_auth(self, browser) -> None:
+        link = "https://dude-yoga.fitbase.io/"
+        page = AuthPage(browser, link)
+        page.open()
         # Авторизация в форме
         page.auth_on_page()
