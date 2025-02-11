@@ -7,7 +7,8 @@ import pytest
 
 class TestBasePageFromMainPage():
     def test_check_visible_on_page(self, browser) -> None:
-        link = "https://dude-yoga.fitbase.io/"
+        # link = "https://dude-yoga.fitbase.io/"
+        link = "https://d40228.fitbase.io/"
         auth_page = AuthPage(browser, link)
         auth_page.open()
         auth_page.auth_on_page()
@@ -22,7 +23,8 @@ class TestBasePageFromMainPage():
 
     @pytest.mark.xfail(strict=False, reason="The test may fail due to the lack of a limit banner on the page!")
     def test_check_visible_limit_banner_on_page(self, browser) -> None:
-        link = "https://dude-yoga.fitbase.io/"
+        # link = "https://dude-yoga.fitbase.io/"
+        link = "https://d40228.fitbase.io/"
         auth_page = AuthPage(browser, link)
         auth_page.open()
         auth_page.auth_on_page()
@@ -32,7 +34,8 @@ class TestBasePageFromMainPage():
 
     @pytest.mark.xfail(strict=False, reason="The test may fail due to the lack of a club change on the page!")
     def test_check_visible_change_club_on_page(self, browser) -> None:
-        link = "https://dude-yoga.fitbase.io/"
+        # link = "https://dude-yoga.fitbase.io/"
+        link = "https://d40228.fitbase.io/"
         auth_page = AuthPage(browser, link)
         auth_page.open()
         auth_page.auth_on_page()
@@ -41,7 +44,8 @@ class TestBasePageFromMainPage():
         page.should_be_change_club()
 
     def test_user_can_click_on_username(self, browser) -> None:
-        link = "https://dude-yoga.fitbase.io/"
+        # link = "https://dude-yoga.fitbase.io/"
+        link = "https://d40228.fitbase.io/"
         auth_page = AuthPage(browser, link)
         auth_page.open()
         auth_page.auth_on_page()

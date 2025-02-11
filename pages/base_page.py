@@ -11,10 +11,22 @@ from .locators import BasePageLocators
 
 from typing import Any
 import os
-import pytest
+import logging
 
 
 load_dotenv()
+
+# Настройка логирования
+BASE_DIR: str = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR: str = os.path.dirname(BASE_DIR)
+LOG_FILE: str = os.path.join(ROOT_DIR, "test_log.log")
+logger: logging.Logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+file_handler = logging.FileHandler(LOG_FILE, mode='a', encoding='utf-8')
+file_handler.setLevel(logging.INFO)
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", "%Y-%m-%d %H:%M:%S")
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class BasePage:
@@ -34,7 +46,9 @@ class BasePage:
         """
         try:
             self.browser.find_element(how, what)
+            logger.info(f"✅ Элемент найден: {what}")
         except NoSuchElementException:
+            logger.warning(f"⚠️ Элемент НЕ найден: {what}")
             return False
         return True
 
@@ -44,7 +58,9 @@ class BasePage:
         """
         try:
             WebDriverWait(self.browser, timeout).until(ec.presence_of_element_located((how, what)))
+            logger.info(f"✅ Элемент появился: {what}")
         except TimeoutException:
+            logger.info(f"⚠️ Элемент НЕ появился: {what}")
             return True
         return False
 
@@ -54,7 +70,9 @@ class BasePage:
         """
         try:
             WebDriverWait(self.browser, timeout, 1, [TimeoutException]).until_not(ec.presence_of_element_located((how, what)))
+            logger.info(f"✅ Элемент исчез: {what}")
         except TimeoutException:
+            logger.warning(f"⚠️ Элемент НЕ исчез: {what}")
             return False
         return True
     
