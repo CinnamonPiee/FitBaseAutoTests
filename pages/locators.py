@@ -15,6 +15,23 @@ class BasePageLocators:
 	# TODO Добавить css селекторы для всплывающего списка
 	CHANGE_CLUB_FORM = (By.CSS_SELECTOR, "#change-club-form")
 
+	# Боковое меню
+	NAV_TITLE_HOME_BUTTON = (By.CSS_SELECTOR, ".nav_title")
+	CURRENT_PAGE_BUTTON = (By.CSS_SELECTOR, ".current-page")
+	LEADS_BUTTON = (By.CSS_SELECTOR, "//a[@href='/leads/index']")
+	CLIENTS_BUTTON = (By.CSS_SELECTOR, "//a[@href='/clients/index']")
+	TASK_BUTTON = (By.CSS_SELECTOR, "//a[@href='/task/manage']")
+	# TODO Добавить css селекторы для выпадающего списка
+	SCHEDULE_DROPDOWN_BUTTON = (By.CSS_SELECTOR, ".schedule_dropdown")
+	STAFF_BUTTON = (By.CSS_SELECTOR, "//a[@href='/staff']")
+	STATISTICS_BUTTON = (By.CSS_SELECTOR, "//a[@href='/statistics']")
+	PAYMASTER_BUTTON = (By.CSS_SELECTOR, "//a[@href='/paymaster']")
+	RECEPTION_BUTTON = (By.CSS_SELECTOR, "//a[@href='/reception']")
+	# TODO Добавить css селекторы для выпадающего списка
+	SETTINGS_BUTTON = (By.CSS_SELECTOR, "//a[@href='/javascript:;']")
+	# TODO Добавить css селекторы для выпадающего списка
+	MOBILE_APP_BUTTON = (By.CSS_SELECTOR, ".fa-mobile")
+
 
 class AuthPageLocators:
 	# Страница авторизации

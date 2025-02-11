@@ -30,7 +30,7 @@ logger.addHandler(file_handler)
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=10) -> None:
+    def __init__(self, browser, url, timeout=5) -> None:
         self.browser: Any = browser
         self.url: Any = url
         self.browser.implicitly_wait(timeout)
@@ -76,6 +76,7 @@ class BasePage:
             return False
         return True
     
+    # Проверка отображения модулей верхнего меню
     def should_be_user_icon(self) -> None:
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not visible on page!"
 
@@ -99,6 +100,43 @@ class BasePage:
 
     def should_be_open_clients_reception(self) -> None:
         assert self.is_element_present(*BasePageLocators.OPEN_CLIENTS_RECEPTION), "Open clients reception is not visible on page!"
+
+    # Проверка отображения модулей бокового меню
+    def should_be_nav_title_home_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.NAV_TITLE_HOME_BUTTON), "Nav title home button is not visible on page!"
+
+    def should_be_current_page_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.CURRENT_PAGE_BUTTON), "Current page button is not visible on page!"
+
+    def should_be_leads_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.LEADS_BUTTON), "Leads button is not visible on page!"
+
+    def should_be_clients_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.CLIENTS_BUTTON), "Clients button is not visible on page!"
+
+    def should_be_task_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.TASK_BUTTON), "Task button is not visible on page!"
+
+    def should_be_schedule_dropdown_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.SCHEDULE_DROPDOWN_BUTTON), "Schedule dropdown button is not visible on page!"
+
+    def should_be_staff_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.STAFF_BUTTON), "Staff button is not visible on page!"
+
+    def should_be_statistics_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.STATISTICS_BUTTON), "Statistics button is not visible on page!"
+
+    def should_be_paymaster_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.PAYMASTER_BUTTON), "Paymaster button is not visible on page!"
+
+    def should_be_reception_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.RECEPTION_BUTTON), "Reception button is not visible on page!"
+
+    def should_be_settings_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.SETTINGS_BUTTON), "Settings button is not visible on page!"
+
+    def should_be_mobile_app_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.MOBILE_APP_BUTTON), "Mobile app button is not visible on page!"
 
     def click_on_user_icon(self) -> None:
         link = self.browser.find_element(*BasePageLocators.USER_ICON)
