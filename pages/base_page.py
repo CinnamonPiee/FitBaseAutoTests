@@ -138,6 +138,19 @@ class BasePage:
     def should_be_mobile_app_button(self) -> None:
         assert self.is_element_present(*BasePageLocators.MOBILE_APP_BUTTON), "Mobile app button is not visible on page!"
 
+    def should_be_footer_fixed(self) -> None:
+        assert self.is_element_present(*BasePageLocators.FOOTER_FIXED), "Footer fixed is not visible on page!"
+
+    def should_be_footer_fixed_button(self) -> None:
+        assert self.is_element_present(*BasePageLocators.FOOTER_FIXED_LINK), "Footer fixed link is not visible on page!"
+
+    # Нажатия на кнопки
     def click_on_user_icon(self) -> None:
         link = self.browser.find_element(*BasePageLocators.USER_ICON)
         link.click()
+
+    def click_on_footer_fixed_link(self) -> None:
+        link = self.browser.find_element(*BasePageLocators.FOOTER_FIXED_LINK)
+        link.click()
+
+    
