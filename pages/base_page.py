@@ -60,7 +60,7 @@ class BasePage:
             WebDriverWait(self.browser, timeout).until(ec.presence_of_element_located((how, what)))
             logger.info(f"✅ Элемент появился: {what}")
         except TimeoutException:
-            logger.info(f"⚠️ Элемент НЕ появился: {what}")
+            logger.warning(f"⚠️ Элемент НЕ появился: {what}")
             return True
         return False
 

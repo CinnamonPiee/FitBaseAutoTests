@@ -1,11 +1,10 @@
 from pages.base_page import BasePage
 from pages.auth_page import AuthPage
 
-import time
 import pytest
 
 
-class TestBasePageFromMainPage():
+class TestBasePage():
     def test_check_visible_top_menu_on_page(self, browser) -> None:
         # link = "https://dude-yoga.fitbase.io/"
         link = "https://d40228.fitbase.io/"

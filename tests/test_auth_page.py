@@ -1,7 +1,7 @@
 from pages.auth_page import AuthPage
 
 
-class TestBasePageFromMainPage():
+class TestAuthPage():
     def test_check_visible_on_page(self, browser) -> None:
         link = "https://dude-yoga.fitbase.io/"
         page = AuthPage(browser, link)

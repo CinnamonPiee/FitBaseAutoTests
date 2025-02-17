@@ -56,7 +56,7 @@ class MainPageLocators:
 	ALERT_DANGER_ERROR_LINK = (By.CSS_SELECTOR, ".alert-link")
 
 	# Ряд фильтров
-	DASHBOARD_SEARCH_PERIOD = (By.CSS_SELECTOR, ".dashboardsearch-dateperiod-container")
+	DASHBOARD_SEARCH_PERIOD = (By.CSS_SELECTOR, ".kv-drp-dropdown")
 	DASHBOARD_CHOOSE_LEGAL_ENTITY = (By.CSS_SELECTOR, ".select2-selection--multiple")
 	DASHBOARD_SUBMIT_BUTTON = (By.CSS_SELECTOR, ".btn-success")
 	DASHBOARD_DEFAULT_BUTTON = (By.CSS_SELECTOR, ".btn-default")
@@ -74,11 +74,11 @@ class MainPageLocators:
 	STATISTICS_DEBT_PER_PERIOD = (By.CSS_SELECTOR, "//a[@href='/statistics/debt?DebtSearch[period]=01.02.2025%20-%2028.02.2025&DebtSearch[is_get_past]=1']")
 	STATISTICS_ALL_DEBT = (By.CSS_SELECTOR, "//a[@href='/statistics/debt']")
 
-	# Ряд графика в по дням
+	# Ряд графика по дням
 	REVENUE_STATISTICS = (By.CSS_SELECTOR, ".x_content")
 
 	# Ряд графиков и диограм 
-	TYPE_PAY_STATISTICS = (By.CSS_SELECTOR, "div.row:nth-child(3) > div:nth-child(1)")
-	TOP_MANAGERS_STATISTICS = (By.CSS_SELECTOR, "div.row:nth-child(3) > div:nth-child(2)")
-	REVENUE_SHARES_STATISTICS = (By.CSS_SELECTOR, "div.row:nth-child(3) > div:nth-child(3)")
-	CUSTOMER_SEGMENTS_STATISTICS = (By.CSS_SELECTOR, "div.row:nth-child(3) > div:nth-child(4)")
+	TYPE_PAY_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(1)")
+	TOP_MANAGERS_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(2)")
+	REVENUE_SHARES_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(3)")
+	CUSTOMER_SEGMENTS_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(4)")
