@@ -63,6 +63,17 @@ class TestBasePage():
         # Проверка отображения смены филиала
         page.should_be_change_club()
 
+    def test_check_visible_footer_on_page(self, browser) -> None:
+        # link = "https://dude-yoga.fitbase.io/"
+        link = "https://d40228.fitbase.io/"
+        auth_page = AuthPage(browser, link)
+        auth_page.open()
+        auth_page.auth_on_page()
+        page = BasePage(browser, browser.current_url)
+        # Проверка отображения футера
+        page.should_be_footer_fixed()
+        page.should_be_footer_fixed_button()
+
     def test_user_can_click_on_username(self, browser) -> None:
         # link = "https://dude-yoga.fitbase.io/"
         link = "https://d40228.fitbase.io/"
@@ -72,4 +83,16 @@ class TestBasePage():
         page = BasePage(browser, browser.current_url)
         # Проверка нажатия на иконку пользователя
         page.click_on_user_icon()
+
+    def test_user_go_to_another_page_after_click_on_footer_link(self, browser) -> None:
+        # link = "https://dude-yoga.fitbase.io/"
+        link = "https://d40228.fitbase.io/"
+        expected_url = "https://status.fitbase.io/"
+        auth_page = AuthPage(browser, link)
+        auth_page.open()
+        auth_page.auth_on_page()
+        page = BasePage(browser, browser.current_url)
+        # Проверка перехода по ссылке
+        page.click_on_footer_fixed_link()
+        assert browser.current_url == expected_url, f"Ожидали {expected_url}, но получили{browser.current_url}"
         
