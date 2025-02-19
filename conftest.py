@@ -22,7 +22,7 @@ def browser(request):
 
 	options_chrome = OptionsChrome()
 	options_chrome.add_experimental_option('prefs', {'intl.accept_languages': user_language})
-	options_chrome.add_argument("--start-fullscreen")
+	options_chrome.add_argument("--start-fullscreen") # Запускает тесты в полноэкранном режиме
 	options_chrome.add_argument("--headless") # Делает браузер невидимым
 
 	if browser_name == "chrome":

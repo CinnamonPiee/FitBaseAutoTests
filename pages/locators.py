@@ -51,6 +51,7 @@ class AuthPageLocators:
 	PASSWORD_RESET_REQUEST_BUTTON = (By.CSS_SELECTOR, ".btn-lg")
 	LOGIN_FORM_TOGGLE_COMEBACK = (By.XPATH, "//section[@id='passwordResetForm']//div[@class='form_row']")
 
+
 class MainPageLocators:
 	ALERT_DANGER_ERROR = (By.CSS_SELECTOR, ".alert alert-danger")
 	ALERT_DANGER_ERROR_LINK = (By.CSS_SELECTOR, ".alert-link")
@@ -98,11 +99,46 @@ class ApplicationsPageLocators:
 	BTN_CHANGING_LIST = (By.CSS_SELECTOR, "div.btn-group > div:nth-child(2)")
 	CREATE_APPLICATION = (By.CSS_SELECTOR, ".btn-primary")
 
-	# Ряд с кнопками
+	# Ряд с фильтрами
 	# TODO возможные неправильные селекторы, подтвердить
-	LEAD_SEARCH_QUERY = (By.CSS_SELECTOR, "#leadssearch-query")
-	LEAD_STAGE = (By.CSS_SELECTOR, ".select2-selection")
-	# TODO остановился тут
+	# TODO сделать селекторы для выпадающих списков
+	LEAD_SEARCH_QUERY = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(1) > #leadssearch-query")
+	LEAD_STAGE_CHOOSE = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(2) > .select2-search__field")
+	TAGS_CHOOSE = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(3) > .select2-search__field")
+	LEAD_CREATE_DATE_RANGE = (By.CSS_SELECTOR, "#lead-created_date_range-container")
+	SOURCE_CHOOSE = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(5) > .select2-selection")
+	CLIENT_IN_PROGRAM_OR_NOT = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(6) > .select2-selection")
+	MANAGER_CHOOSE = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(7) > .select2-selection")
+	ONLY_WITHOUT_TASKS_BUTTON = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(8) > .cbx-icon")
+	SHOW_ARCHIVED_BUTTON = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(9) > .cbx-icon")
+	SUBMIT_BUTTON = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(10) > .btn-success")
+	RESET_FILTER_BUTTON = (By.CSS_SELECTOR, "div.filters-row > div:nth-child(11) > .btn-default")
+
+	# Ряд с этапами воронки
+	# TODO Сделать css селекторы ко всем этапам воронки
+	FUNNEL_BOARD = (By.CSS_SELECTOR, ".funnel_board")
+
+
+class ClientsPageLocators:
+	# Верхний ряд с кнопками
+	NEW_CLIENT_BUTTON = (By.CSS_SELECTOR, "#new-client")
+	CLIENTS_FILTER_BUTTON = (By.CSS_SELECTOR, "#clients-filter")
+	# TODO сделать селекторы для выпадающих списков
+	BTN_GROUP_EXPORT_BUTTON = (By.CSS_SELECTOR, "div.btn-group > div:nth-child(1) > #export-pjax-cols")
+	# TODO сделать селекторы для выпадающих списков
+	BTN_GROUP_EXPORT_BUTTON_EXEL = (By.CSS_SELECTOR, "div.btn-group > div:nth-child(2) > #w1")
+	ARCHIVE_CLIENTS_BUTTON = (By.CSS_SELECTOR, "#btn-archive-clients")
+
+	# Фильтры по клиентам
+
+	# Фильтры по абонементам
+
+	# Фильтры по услугам
+
+
+
+
+	
 
 
 
