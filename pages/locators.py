@@ -82,3 +82,28 @@ class MainPageLocators:
 	TOP_MANAGERS_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(2)")
 	REVENUE_SHARES_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(3)")
 	CUSTOMER_SEGMENTS_STATISTICS = (By.CSS_SELECTOR, "div.row > div:nth-child(4)")
+
+
+class ApplicationsPageLocators:
+	# Верхний ряд с кнопками
+	# TODO Доделать выпадающий список css селекторов
+	DROPDOWN_TOGGLE = (By.CSS_SELECTOR, "#action_dropdown")
+	SETTINGS_BUTTON = (By.CSS_SELECTOR, ".btn-default")
+	# TODO Доделать выпадающий список css селекторов
+	EXPORT_PJAX_LEADS_COLS_BUTTON = (By.CSS_SELECTOR, "#export-pjax-leads-cols")
+	# TODO Доделать выпадающий список css селекторов
+	FORMAT_FILE_FOR_EXPORT = (By.CSS_SELECTOR, "#w1")
+	JS_LOAD_MODAL = (By.CSS_SELECTOR, ".js_load_modal")
+	BTN_CHANGING_COLUMNS = (By.CSS_SELECTOR, "div.btn-group > div:nth-child(1)")
+	BTN_CHANGING_LIST = (By.CSS_SELECTOR, "div.btn-group > div:nth-child(2)")
+	CREATE_APPLICATION = (By.CSS_SELECTOR, ".btn-primary")
+
+	# Ряд с кнопками
+	# TODO возможные неправильные селекторы, подтвердить
+	LEAD_SEARCH_QUERY = (By.CSS_SELECTOR, "#leadssearch-query")
+	LEAD_STAGE = (By.CSS_SELECTOR, ".select2-selection")
+	# TODO остановился тут
+
+
+
+
