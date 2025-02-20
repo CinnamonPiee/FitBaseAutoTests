@@ -130,6 +130,22 @@ class ClientsPageLocators:
 	ARCHIVE_CLIENTS_BUTTON = (By.CSS_SELECTOR, "#btn-archive-clients")
 
 	# Фильтры по клиентам
+	CLIENTS_FILTER_TABS = (By.CSS_SELECTOR, "#ClientFilterTabs > div:nth-child(1)")
+
+	# ClientFilterTabsContent
+	# TODO Поправить css селекторы, возможна ошибка
+	CLIENT_INFO_FORM = (By.CSS_SELECTOR, "#clientinfo")
+	SEX_CHOOSE_FORM = (By.CSS_SELECTOR, ".select2-selection--single")
+	KV_CONTAINER_FORM_SEX_FORM = (By.CSS_SELECTOR, ".kv-container-from")
+	KV_CONTAINER_FORM_SEPARATOR = (By.CSS_SELECTOR, ".kv-field-separator")
+	KV_CONTAINER_FORM_SEX_TO = (By.CSS_SELECTOR, ".kv-container-to")
+	STATUS_CLIENT_FORM = (By.CSS_SELECTOR, ".select2-selection--multiple")
+	MANAGER_CHOOSE_FORM = (By.CSS_SELECTOR, ".select2-selection--multiple")
+	CITY_CHOOSE_FORM = (By.CSS_SELECTOR, ".select2-selection--multiple")
+
+	SUBSCRIPTIONS_FILTER_TABS = (By.CSS_SELECTOR, "#ClientFilterTabs > div:nth-child(2)")
+	SERVICE_FILTER_TABS = (By.CSS_SELECTOR, "#ClientFilterTabs > div:nth-child(3)")
+
 
 	# Фильтры по абонементам
 
