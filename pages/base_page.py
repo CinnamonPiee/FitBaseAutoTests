@@ -1,8 +1,7 @@
 from dotenv import load_dotenv
 from selenium.common.exceptions import (
     NoSuchElementException, 
-    TimeoutException, 
-    NoAlertPresentException
+    TimeoutException,
 )
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -40,6 +39,7 @@ class BasePage:
     def open(self) -> None:
         self.browser.get(self.url)
 
+    # Функции проверок
     def is_element_present(self, how, what) -> bool:
         """
         Проверка на наличие элемента на странице
@@ -47,8 +47,8 @@ class BasePage:
         try:
             self.browser.find_element(how, what)
             logger.info(f"✅ Элемент найден: {what}")
-        except NoSuchElementException:
-            logger.warning(f"⚠️ Элемент НЕ найден: {what}")
+        except NoSuchElementException as ex:
+            logger.warning(f"⚠️ Элемент НЕ найден: {what}, {ex}")
             return False
         return True
 
@@ -58,9 +58,9 @@ class BasePage:
         """
         try:
             WebDriverWait(self.browser, timeout).until(ec.presence_of_element_located((how, what)))
-            logger.info(f"✅ Элемент появился: {what}")
-        except TimeoutException:
-            logger.warning(f"⚠️ Элемент НЕ появился: {what}")
+            logger.info(f"✅ Элемент НЕ появился: {what}")
+        except TimeoutException as ex:
+            logger.warning(f"⚠️ Элемент появился: {what}, {ex}")
             return True
         return False
 
@@ -71,11 +71,118 @@ class BasePage:
         try:
             WebDriverWait(self.browser, timeout, 1, [TimeoutException]).until_not(ec.presence_of_element_located((how, what)))
             logger.info(f"✅ Элемент исчез: {what}")
-        except TimeoutException:
-            logger.warning(f"⚠️ Элемент НЕ исчез: {what}")
+        except TimeoutException as ex:
+            logger.warning(f"⚠️ Элемент НЕ исчез: {what}, {ex}")
             return False
         return True
     
+    def is_element_displayed(self, how, what) -> bool:
+        """
+        Проверка, что элемент отображается
+        """
+        try:
+            element = self.browser.find_element(how, what)
+            is_displayed = element.is_displayed()
+            if is_displayed:
+                logger.info(f"✅ Элемент отображается: {what}")
+            else:
+                logger.warning(f"⚠️ Элемент найден, но НЕ отображается: {what}")
+            return is_displayed
+        except NoSuchElementException as ex:
+            logger.warning(f"⚠️ Элемент НЕ отображается: {what}, {ex}")
+            return False
+
+    def is_element_displayed_per_time(self, how, what, timeout=4) -> bool:
+        """
+        Проверка отображения элемента определенное время
+        """
+        try:
+            WebDriverWait(self.browser, timeout).until(ec.visibility_of_element_located((how, what)))
+            logger.info(f"✅ Элемент отображался в течение {timeout} секунд: {what}")
+        except TimeoutException as ex:
+            logger.warning(f"⚠️ Элемент НЕ отображался в течение {timeout} секунд: {what}, {ex}")
+            return True
+        return False
+
+    def element_is_enabled(self, how, what) -> bool:
+        """
+        Проверка доступности элемента на странице
+        """
+        try:
+            element = self.browser.find_element(how, what)
+            is_enabled = element.is_enabled()
+            if is_enabled:
+                logger.info(f"✅ Элемент доступен: {what}")
+            else:
+                logger.warning(f"⚠️ Элемент найден, но НЕ доступен: {what}")
+            return is_enabled
+        except NoSuchElementException as ex:
+            logger.warning(f"⚠️ Элемент НЕ найден: {what}, {ex}")
+            return False
+
+    def text_element_is_correct(self, how, what, text) -> bool:
+        """
+        Проверка корректности текста у элемента
+        """
+        try:
+            element = self.browser.find_element(how, what)
+            actual_text = element.text.strip()
+            is_correct = actual_text == text
+            if is_correct:
+                logger.info(f"✅ Текст элемента корректен: {what} (\"{actual_text}\")")
+            else:
+                logger.warning(f"⚠️ Текст элемента НЕ совпадает: {what} (Ожидалось: \"{text}\", Получено: \"{actual_text}\")")
+            return is_correct
+        except NoSuchElementException as ex:
+            logger.warning(f"⚠️ Элемент НЕ найден: {what}, {ex}")
+            return False
+
+    def is_element_attribute_correct(self, how, what, attribute, text) -> None:
+        """
+        Проверка атрибута элемента
+        """
+        try:
+            element = self.browser.find_element(how, what)
+            actual_value = element.get_attribute(attribute)
+            is_correct = actual_value == text
+            if is_correct:
+                logger.info(f"✅ Атрибут '{attribute}' у элемента {what} имеет правильное значение: \"{actual_value}\"")
+            else:
+                logger.warning(f"⚠️ Атрибут '{attribute}' у элемента {what} НЕ совпадает. Ожидалось: \"{text}\", Получено: \"{actual_value}\"")
+            return is_correct
+        except NoSuchElementException as ex:
+            logger.warning(f"⚠️ Элемент НЕ найден: {what}, {ex}")
+            return False
+
+    def is_redirect_correct(self, old_url, new_url, timeout=4) -> bool:
+        """
+        Проверка редиректа
+        """
+        try:
+            WebDriverWait(self.browser, timeout).until(ec.url_changes(old_url))
+            current_url = self.browser.current_url
+            is_correct = current_url == new_url
+            if is_correct:
+                logger.info(f"✅ Успешный редирект: {old_url} → {new_url}")
+            else:
+                logger.warning(f"⚠️ Неверный редирект: Ожидалось {new_url}, но перешли на {current_url}")
+            return is_correct
+        except TimeoutException as ex:
+            logger.warning(f"⚠️ Редирект НЕ произошёл. Остался URL: {self.browser.current_url}, {ex}")
+            return False
+
+    def is_element_to_be_clickable(self, how, what, timeout=4) -> bool:
+        """
+        Проверка кликабельности элемента
+        """
+        try:
+            element: ec.WebElement = WebDriverWait(self.browser, timeout).until(ec.element_to_be_clickable((how, what)))
+            logger.info(f"✅ Элемент кликабелен: {what}")
+            return True
+        except TimeoutException as ex:
+            logger.warning(f"⚠️ Элемент НЕ кликабелен: {what}, {ex}")
+            return False
+
     # Проверка отображения модулей верхнего меню
     def should_be_user_icon(self) -> None:
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not visible on page!"
